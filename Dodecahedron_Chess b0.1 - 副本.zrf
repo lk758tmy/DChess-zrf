@@ -1,0 +1,124 @@
+;By 758_lk
+;Email lk758tmy@gmail.com
+(define King_LongMove ($1 (verify empty?) (verify (in-zone? Palace)) $2 (verify empty?) (verify (in-zone? Palace)) add))
+(define Fighter_LongMove ($1 (verify empty?) $2 (verify not-friend?) add))
+(define Leaper_Leap ((if (enemy? $1) (capture $1)) $1 (verify not-empty?) $2 (verify empty?) add))
+(game
+  (title "Dodecahedron_Chess")
+  (description "Coming soon")
+  (history "Coming soon")
+  (strategy "Coming soon")
+  (players White Black)
+  (turn-order White Black)
+  (board
+    (image "images\Dodecahedron_Chess\Gameboard.bmp")
+    (positions
+      (vertex_1  435 125 475 165) (vertex_2  690 775 730 815)
+      (vertex_3  645 492 685 532) (vertex_4  180 775 220 815)
+      (vertex_5  848 290 888 330) (vertex_6  225 492 265 532)
+      (vertex_7  305 243 345 283) (vertex_8  260 665 300 705)
+      (vertex_9  435 0 475 40) (vertex_10  20 290 60 330)
+      (vertex_11  575 470 615 510) (vertex_12  435 572 475 612)
+      (vertex_13  565 243 605 283) (vertex_14  612 665 652 705)
+      (vertex_15  720 330 760 370) (vertex_16  295 470 335 510)
+      (vertex_17  522 303 562 343) (vertex_18  150 330 190 370)
+      (vertex_19  348 303 388 343) (vertex_20  435 645 475 685)
+    )
+    (links edges1 (vertex_1 vertex_7) (vertex_2 vertex_4) (vertex_3 vertex_11) (vertex_4 vertex_2)
+                (vertex_5 vertex_2) (vertex_6 vertex_8) (vertex_7 vertex_1) (vertex_8 vertex_4)
+                (vertex_9 vertex_1) (vertex_10 vertex_4) (vertex_11 vertex_3) (vertex_12 vertex_11)
+                (vertex_13 vertex_1) (vertex_14 vertex_2) (vertex_15 vertex_3) (vertex_16 vertex_6)
+                (vertex_17 vertex_11) (vertex_18 vertex_6) (vertex_19 vertex_7)(vertex_20 vertex_8)
+    )
+    (links edges2 (vertex_1 vertex_9) (vertex_2 vertex_5) (vertex_3 vertex_14) (vertex_4 vertex_8)
+                (vertex_5 vertex_9) (vertex_6 vertex_16) (vertex_7 vertex_18) (vertex_8 vertex_6)
+                (vertex_9 vertex_5) (vertex_10 vertex_9) (vertex_11 vertex_12) (vertex_12 vertex_16)
+                (vertex_13 vertex_15) (vertex_14 vertex_3) (vertex_15 vertex_5) (vertex_16 vertex_12)
+                (vertex_17 vertex_13) (vertex_18 vertex_7) (vertex_19 vertex_16) (vertex_20 vertex_12)
+    )
+    (links edges3 (vertex_1 vertex_13) (vertex_2 vertex_14) (vertex_3 vertex_15) (vertex_4 vertex_10)
+                (vertex_5 vertex_15) (vertex_6 vertex_18) (vertex_7 vertex_19) (vertex_8 vertex_20)
+                (vertex_9 vertex_10) (vertex_10 vertex_18) (vertex_11 vertex_17) (vertex_12 vertex_20)
+                (vertex_13 vertex_17) (vertex_14 vertex_20) (vertex_15 vertex_13) (vertex_16 vertex_19)
+                (vertex_17 vertex_19) (vertex_18 vertex_10) (vertex_19 vertex_17) (vertex_20 vertex_14)
+    )
+    (links antipoles (vertex_1 vertex_20) (vertex_2 vertex_19) (vertex_3 vertex_18) (vertex_4 vertex_17)
+                (vertex_5 vertex_16) (vertex_6 vertex_15) (vertex_7 vertex_14) (vertex_8 vertex_13)
+                (vertex_9 vertex_12) (vertex_10 vertex_11) (vertex_11 vertex_10) (vertex_12 vertex_9)
+                (vertex_13 vertex_8) (vertex_14 vertex_7) (vertex_15 vertex_6) (vertex_16 vertex_5)
+                (vertex_17 vertex_4) (vertex_18 vertex_3) (vertex_19 vertex_2) (vertex_20 vertex_1)
+    )
+    (zone
+        (name Palace)
+        (players White)
+        (positions vertex_1 vertex_7 vertex_13 vertex_17 vertex_19)
+    )
+    (zone
+        (name Palace)
+        (players Black)
+        (positions vertex_2 vertex_4 vertex_8 vertex_14 vertex_20)
+    )
+  )
+  (piece
+    (name King)
+    (help "Coming soon")
+    (description "Coming soon")
+    (image White "images\Dodecahedron_Chess\WKing.bmp"
+           Black "images\Dodecahedron_Chess\BKing.bmp"
+    )
+    (moves 
+      (edges1 (verify not-friend?) (verify (in-zone? Palace)) add)
+      (edges2 (verify not-friend?) (verify (in-zone? Palace)) add)
+      (edges3 (verify not-friend?) (verify (in-zone? Palace)) add)
+      (King_LongMove edges1 edges1) (King_LongMove edges1 edges2) (King_LongMove edges1 edges3)
+      (King_LongMove edges2 edges1) (King_LongMove edges2 edges2) (King_LongMove edges2 edges3)
+      (King_LongMove edges3 edges1) (King_LongMove edges3 edges2) (King_LongMove edges3 edges3)
+    )
+  )
+  (piece
+    (name Leaper)
+    (help "Coming soon")
+    (description "Coming soon")
+    (image White "images\Dodecahedron_Chess\WLeaper.bmp"
+           Black "images\Dodecahedron_Chess\BLeaper.bmp"
+    )
+    (moves 
+      (edges1 (verify empty?) add) (edges2 (verify empty?) add) (edges3 (verify empty?) add)
+      (Leaper_Leap edges1 edges1) (Leaper_Leap edges1 edges2) (Leaper_Leap edges1 edges3)
+      (Leaper_Leap edges2 edges1) (Leaper_Leap edges2 edges2) (Leaper_Leap edges2 edges3)
+      (Leaper_Leap edges3 edges1) (Leaper_Leap edges3 edges2) (Leaper_Leap edges3 edges3)
+    )
+  )
+  (piece
+    (name Traveller)
+    (help "Coming soon")
+    (description "Coming soon")
+    (image White "images\Dodecahedron_Chess\WTraveller.bmp" 
+           Black "images\Dodecahedron_Chess\BTraveller.bmp"
+    )
+    (moves 
+      (edges1 (verify not-friend?) add) (edges2 (verify not-friend?) add) (edges3 (verify not-friend?) add)
+      (antipoles (verify empty?) add)
+    )
+  )
+  (piece
+    (name Fighter)
+    (help "Coming soon")
+    (description "Coming soon")
+    (image White "images\Dodecahedron_Chess\WFighter.bmp"
+           Black "images\Dodecahedron_Chess\BFighter.bmp"
+    )
+    (moves 
+      (edges1 (verify empty?) add) (edges2 (verify empty?) add) (edges3 (verify empty?) add)
+      (Fighter_LongMove edges1 edges1) (Fighter_LongMove edges1 edges2) (Fighter_LongMove edges1 edges3)
+      (Fighter_LongMove edges2 edges1) (Fighter_LongMove edges2 edges2) (Fighter_LongMove edges2 edges3)
+      (Fighter_LongMove edges3 edges1) (Fighter_LongMove edges3 edges2) (Fighter_LongMove edges3 edges3)
+    )
+  )
+  (loss-condition (White Black) (checkmated King))
+  (loss-condition (White Black) stalemated)
+  (board-setup
+    (White (Leaper vertex_13) (Fighter vertex_7) (Traveller vertex_9) (King vertex_1))
+    (Black (Leaper vertex_8) (Fighter vertex_14) (Traveller vertex_12) (King vertex_20))
+  )
+)
